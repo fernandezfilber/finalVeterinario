@@ -1,136 +1,184 @@
-/* Estilos generales para el body o el contenedor principal */
+/* General styles for the body or main container */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex; /* Centra el contenido */
+  display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  min-height: 100vh;
   margin: 0;
-  background-color: #282c34; /* Fondo oscuro */
-  color: #abb2bf; /* Texto claro */
+  background: linear-gradient(rgba(245, 247, 250, 0.9), rgba(245, 247, 250, 0.9)), url('/assets/foto.jpg') no-repeat center center/cover;
+  color: #455a64;
+  line-height: 1.6;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Contenedor principal del formulario */
+/* Main login container */
 .contenedor-login {
-  background-color: #3a404a; /* Fondo más claro para el formulario */
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  background: linear-gradient(145deg, #e0f2f1, #b2dfdb);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 400px;
-  width: 90%;
-  box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
-  border: 1px solid #4a505c; /* Borde sutil */
+  width: 95%;
+  max-width: 420px;
+  box-sizing: border-box;
+  border: 1px solid #b0bec5;
 }
 
-/* Estilos para la imagen de login */
+/* Login image styles */
 .contenedor-login img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 20px;
-  border-radius: 50%; /* Hace la imagen redonda */
-  border: 3px solid #61dafb; /* Borde de color React */
-  transition: transform 0.3s ease-in-out; /* Transición para el hover */
+  width: 110px;
+  height: 110px;
+  margin-bottom: 1.5rem;
+  border-radius: 50%;
+  border: 4px solid #26a69a;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  object-fit: cover;
 }
 
 .contenedor-login img:hover {
-  transform: scale(1.1); /* Efecto zoom al pasar el mouse */
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(38, 166, 154, 0.5);
 }
 
-/* Estilos para el título H1 */
+/* H1 title styles */
 .contenedor-login h1 {
-  color: #61dafb; /* Color del logo de React */
-  margin-bottom: 30px;
-  font-size: 2em;
-  letter-spacing: 1px;
+  color: #00695c;
+  margin-bottom: 2rem;
+  font-size: 2.2em;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 105, 92, 0.2);
 }
 
-/* Estilos para el formulario */
+/* Form styles */
 .contenedor-login form {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Espacio entre elementos del formulario */
+  gap: 1.5rem;
 }
 
-/* Estilos para las etiquetas */
+/* Label styles */
 .contenedor-login label {
   font-size: 1.1em;
   text-align: left;
-  margin-bottom: 5px;
-  display: block; /* Para que ocupen su propia línea */
-  color: #c6c6c6;
+  margin-bottom: 0.3rem;
+  color: #607d8b;
 }
 
-/* Estilos para los campos de entrada (input text/password) */
+/* Input field styles (text/password) */
 .contenedor-login input[type="text"],
 .contenedor-login input[type="password"] {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #4a505c;
-  border-radius: 5px;
-  background-color: #2f333a;
-  color: #e0e0e0;
+  padding: 0.9rem 1rem;
+  border: 1px solid #b0bec5;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #333;
   font-size: 1em;
   box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contenedor-login input[type="text"]:focus,
 .contenedor-login input[type="password"]:focus {
-  border-color: #61dafb; /* Borde azul al enfocar */
-  outline: none; /* Elimina el contorno por defecto del navegador */
-  box-shadow: 0 0 8px rgba(97, 218, 251, 0.5); /* Sombra azul al enfocar */
+  border-color: #26a69a;
+  outline: none;
+  box-shadow: 0 0 10px rgba(38, 166, 154, 0.6);
+  caret-color: #26a69a;
 }
 
-/* Estilos para el botón de enviar */
+/* Submit button styles */
 .contenedor-login input[type="submit"] {
-  background-color: #61dafb; /* Color principal del botón */
-  color: #282c34; /* Texto oscuro para el botón */
-  padding: 15px 25px;
+  background: linear-gradient(90deg, #26a69a, #00695c);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones */
-  margin-top: 20px;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .contenedor-login input[type="submit"]:hover {
-  background-color: #4fa3d1; /* Un poco más oscuro al pasar el mouse */
-  transform: translateY(-2px); /* Efecto de "levantar" el botón */
+  background: linear-gradient(90deg, #00695c, #004d40);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(38, 166, 154, 0.4);
 }
 
 .contenedor-login input[type="submit"]:active {
-  transform: translateY(0); /* Vuelve a la posición normal al hacer clic */
-  background-color: #3a8bbd; /* Color aún más oscuro al hacer clic */
-}.mascotas-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #3a404a;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  background: linear-gradient(90deg, #004d40, #00332a);
+}
+
+/* Mascotas container styles */
+.mascotas-container {
+  width: 95%;
+  max-width: 850px;
+  margin: 3rem 0;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, #e0f2f1, #b2dfdb);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  color: #abb2bf;
+  color: #455a64;
 }
 
 .mascotas-container h2 {
-  color: #61dafb;
-  margin-bottom: 1rem;
+  color: #00695c;
+  margin-bottom: 1.5rem;
+  font-size: 1.8em;
+  text-shadow: 0 2px 4px rgba(0, 105, 92, 0.2);
 }
 
 .mascotas-container button {
-  background-color: #61dafb;
-  color: #282c34;
-  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #26a69a, #00695c);
+  color: #ffffff;
+  padding: 0.9rem 2rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .mascotas-container button:hover {
-  background-color: #4fa3d1;
-  transform: translateY(-2px);
+  background: linear-gradient(90deg, #00695c, #004d40);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(38, 166, 154, 0.4);
+}
+
+.mascotas-container button:active {
+  transform: translateY(0);
+  background: linear-gradient(90deg, #004d40, #00332a);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .contenedor-login {
+    padding: 1.5rem;
+    width: 90%;
+  }
+
+  .contenedor-login h1 {
+    font-size: 1.8em;
+  }
+
+  .mascotas-container {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    width: 90%;
+  }
+
+  .mascotas-container h2 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .mascotas-container {
+    margin: 2rem 0;
+  }
 }
