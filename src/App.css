@@ -1,0 +1,107 @@
+/* Estilos generales para el body o el contenedor principal */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex; /* Centra el contenido */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  margin: 0;
+  background-color: #282c34; /* Fondo oscuro */
+  color: #abb2bf; /* Texto claro */
+}
+
+/* Contenedor principal del formulario */
+.contenedor-login {
+  background-color: #3a404a; /* Fondo más claro para el formulario */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
+  border: 1px solid #4a505c; /* Borde sutil */
+}
+
+/* Estilos para la imagen de login */
+.contenedor-login img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  border-radius: 50%; /* Hace la imagen redonda */
+  border: 3px solid #61dafb; /* Borde de color React */
+  transition: transform 0.3s ease-in-out; /* Transición para el hover */
+}
+
+.contenedor-login img:hover {
+  transform: scale(1.1); /* Efecto zoom al pasar el mouse */
+}
+
+/* Estilos para el título H1 */
+.contenedor-login h1 {
+  color: #61dafb; /* Color del logo de React */
+  margin-bottom: 30px;
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+
+/* Estilos para el formulario */
+.contenedor-login form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre elementos del formulario */
+}
+
+/* Estilos para las etiquetas */
+.contenedor-login label {
+  font-size: 1.1em;
+  text-align: left;
+  margin-bottom: 5px;
+  display: block; /* Para que ocupen su propia línea */
+  color: #c6c6c6;
+}
+
+/* Estilos para los campos de entrada (input text/password) */
+.contenedor-login input[type="text"],
+.contenedor-login input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #4a505c;
+  border-radius: 5px;
+  background-color: #2f333a;
+  color: #e0e0e0;
+  font-size: 1em;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones */
+}
+
+.contenedor-login input[type="text"]:focus,
+.contenedor-login input[type="password"]:focus {
+  border-color: #61dafb; /* Borde azul al enfocar */
+  outline: none; /* Elimina el contorno por defecto del navegador */
+  box-shadow: 0 0 8px rgba(97, 218, 251, 0.5); /* Sombra azul al enfocar */
+}
+
+/* Estilos para el botón de enviar */
+.contenedor-login input[type="submit"] {
+  background-color: #61dafb; /* Color principal del botón */
+  color: #282c34; /* Texto oscuro para el botón */
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones */
+  margin-top: 20px;
+}
+
+.contenedor-login input[type="submit"]:hover {
+  background-color: #4fa3d1; /* Un poco más oscuro al pasar el mouse */
+  transform: translateY(-2px); /* Efecto de "levantar" el botón */
+}
+
+.contenedor-login input[type="submit"]:active {
+  transform: translateY(0); /* Vuelve a la posición normal al hacer clic */
+  background-color: #3a8bbd; /* Color aún más oscuro al hacer clic */
+}
