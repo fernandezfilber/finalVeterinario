@@ -104,4 +104,33 @@ body {
 .contenedor-login input[type="submit"]:active {
   transform: translateY(0); /* Vuelve a la posición normal al hacer clic */
   background-color: #3a8bbd; /* Color aún más oscuro al hacer clic */
+}.mascotas-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #3a404a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #abb2bf;
+}
+
+.mascotas-container h2 {
+  color: #61dafb;
+  margin-bottom: 1rem;
+}
+
+.mascotas-container button {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mascotas-container button:hover {
+  background-color: #4fa3d1;
+  transform: translateY(-2px);
 }
