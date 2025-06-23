@@ -33,7 +33,7 @@ export function GestionVeterinarios({ onVolverAlDashboard }) {
         const resultado = await API.eliminarVeterinario(id); //
         if (resultado.exito) {
           setMensajeOperacion({ texto: resultado.mensaje, tipo: "success" });
-          obtenerListaVeterinarios(); // Recargar la lista de veterinarios para reflejar el cambio
+          obtenerListaVeterinarios(); 
         } else {
           setMensajeOperacion({ texto: resultado.mensaje, tipo: "danger" });
         }
@@ -46,11 +46,9 @@ export function GestionVeterinarios({ onVolverAlDashboard }) {
 
   // NUEVA FUNCIÓN: Manejar clic en Actualizar
   const manejarActualizarVeterinario = (vet) => {
-    // Aquí puedes implementar la lógica para abrir un formulario de edición
-    // Por ahora, solo mostraremos una alerta
+  
     alert(`Funcionalidad de Actualizar para el veterinario: ${vet.nombre} (ID: ${vet.id}). ¡Próximamente un formulario aquí!`);
-    // En un caso real, podrías setear un estado como setVeterinarioAEditar(vet)
-    // y renderizar un componente de formulario de edición.
+   
   };
 
 
@@ -58,7 +56,7 @@ export function GestionVeterinarios({ onVolverAlDashboard }) {
     return <div className="text-center mt-5">Cargando veterinarios...</div>;
   }
 
-  // ... (código existente antes del return)
+ 
 
   return (
     <div className="card shadow-sm p-4">
@@ -72,7 +70,7 @@ export function GestionVeterinarios({ onVolverAlDashboard }) {
       )}
 
       {veterinarios.length > 0 ? (
-        // CAMBIO AQUÍ: Usamos un div para el contenedor de las tarjetas y flexbox para el diseño
+       
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
           {veterinarios.map((vet) => (
             <div className="col" key={vet.idVeterinario}>

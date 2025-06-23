@@ -206,7 +206,7 @@ export function Dashboard({ usuario, onCerrarSesion }) {
             <GestionVeterinarios
               onVolverAlDashboard={() => setVistaActual('inicio')}
             />
-          ) : null} {/* Esta es la estructura correcta del ternario encadenado. */}
+          ) : null} {/* . */}
         </div>
       </main>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import * as API from './services/data'; // Asegúrate de que la ruta sea correcta
-import './App.css'; // Puedes reutilizar los estilos o crear uno nuevo para registro
+import * as API from './services/data'; 
+import './App.css'; 
 
 export function Registro() {
   const [datosRegistro, setDatosRegistro] = useState({
@@ -9,7 +9,7 @@ export function Registro() {
     nombre: '',
     telefono: '',
     correo: '',
-    activo: true // Asumimos que por defecto un nuevo veterinario está activo
+    activo: true 
   });
 
   const manejarCambio = (e) => {
@@ -41,17 +41,17 @@ export function Registro() {
       alert("Error al registrar veterinario: " + (resultado.error || "Error desconocido."));
     }
   };
-
+//esto es html , para formularios=>
   return (
     <div className="contenedor-login"> {/* Reutilizamos la clase de estilo */}
-      <img src={API.imagen} width="120" height="120" alt="Imagen de Registro" /> {/* Si imagen está exportada en data.js, sino importa imagen aqui directamente*/}
+      <img src={API.imagen} width="120" height="120" alt="Imagen de Registro" /> {/* */}
       <h1>Registro de Veterinario</h1>
       <form onSubmit={manejarEnvioRegistro}>
         <label htmlFor="regUsuario">Usuario:</label>
         <input 
           id="regUsuario"
           type="text"
-          name="usuario" // Importante: el atributo 'name' debe coincidir con la clave en el estado
+          name="usuario" 
           value={datosRegistro.usuario}
           onChange={manejarCambio}
           required
