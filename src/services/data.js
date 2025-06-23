@@ -132,6 +132,24 @@ export async function actualizarContrasena(usuario, pass, newpass) {
   }
 }
 
+
+// NUEVA FUNCIÓN: Obtener todos los veterinarios
+/**
+ * Obtiene la lista completa de todos los veterinarios registrados en el sistema.
+ * @returns {Promise<Array<Object>>} Una promesa que resuelve con un array de objetos de veterinarios.
+ */
+export async function getTodosLosVeterinarios() {
+  try {
+    const response = await fetch(URL_BASE_API + 'Lista'); // Llama al endpoint GET que devuelve la lista de veterinarios
+    if (!response.ok) {
+      throw new Error(`Error al obtener veterinarios: ${response.status} ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error en getTodosLosVeterinarios:', error.message);
+    return []; // Retorna un array vacío en caso de error
+  }
+}
 // NUEVA FUNCIÓN: Eliminar Veterinario
 /**
  * Elimina un veterinario del sistema por su ID.
@@ -166,21 +184,67 @@ export async function eliminarVeterinario(idVeterinario) {
     return { exito: false, mensaje: error.message || "Error desconocido al eliminar el veterinario." };
   }
 }
-// NUEVA FUNCIÓN: Obtener todos los veterinarios
+// NUeva funcion para actualziar 
+
 /**
- * Obtiene la lista completa de todos los veterinarios registrados en el sistema.
- * @returns {Promise<Array<Object>>} Una promesa que resuelve con un array de objetos de veterinarios.
+ * Actualiza los datos de un veterinario existente.
+ * @param {number} idVeterinario - El ID del veterinario a actualizar.
+ * @param {object} datosVeterinario - Un objeto con los datos actualizados del veterinario (corresponde al VeterinarioDTO en el backend).
+ * @returns {Promise<object>} Un objeto con 'exito' (booleano) y un 'mensaje' (string).
  */
-export async function getTodosLosVeterinarios() {
+export async function actualizarVeterinario(idVeterinario, datosVeterinario) {
   try {
-    const response = await fetch(URL_BASE_API + 'Lista'); // Llama al endpoint GET que devuelve la lista de veterinarios
+    // La URL para actualizar un veterinario específico es /api/Veterinario/{id}
+    // Asumiendo que tu controlador es 'VeterinarioController'
+    // y tiene la ruta '[Route("api/[controller]")]' y el método PUT es '[HttpPut("{id}")]'
+    const url = `${URL_BASE_API}Veterinario/${idVeterinario}`; // Correcto: /api/Veterinario/123
+
+    console.log(`[API] Intentando actualizar veterinario con PUT a: ${url}`);
+    console.log("[API] Datos a enviar:", datosVeterinario);
+
+    const response = await fetch(url, {
+      method: 'PUT', // Método HTTP para actualizar
+      headers: {
+        'Content-Type': 'application/json', // Indicar que el cuerpo es JSON
+        'Accept': 'application/json'         // Indicar que esperamos JSON de vuelta
+      },
+      body: JSON.stringify(datosVeterinario) // Convertir el objeto JS a una cadena JSON
+    });
+
+    // Manejo de la respuesta HTTP
     if (!response.ok) {
-      throw new Error(`Error al obtener veterinarios: ${response.status} ${response.statusText}`);
+      // Intentar obtener un mensaje de error del cuerpo de la respuesta del servidor
+      let errorData = null;
+      try {
+        errorData = await response.json(); // La API probablemente devuelve { mensaje: "..." }
+      // eslint-disable-next-line no-unused-vars
+      } catch (error) {
+        errorData = await response.text(); // Si no es JSON, toma el texto plano
+      }
+
+      console.error(`[API] Error HTTP al actualizar veterinario: ${response.status} ${response.statusText}`, errorData);
+      // Lanzar un error con un mensaje más descriptivo para el componente que llama
+      throw new Error(errorData.mensaje || `Error al actualizar veterinario: ${response.status} ${response.statusText}`);
     }
-    return await response.json();
+
+    // Si la respuesta es OK (status 200-299), significa éxito
+    // Tu backend devuelve { mensaje: "Veterinario actualizado correctamente." }
+    const result = await response.json(); // Parseamos el JSON de la respuesta
+
+    console.log("[API] Respuesta de actualización exitosa:", result);
+
+    return {
+      exito: true,
+      mensaje: result.mensaje || "Veterinario actualizado correctamente."
+    };
+
   } catch (error) {
-    console.error('Error en getTodosLosVeterinarios:', error.message);
-    return []; // Retorna un array vacío en caso de error
+    console.error('[API] Error en actualizarVeterinario (catch block):', error.message);
+    // Retorna un objeto con 'exito: false' y el mensaje de error
+    return {
+      exito: false,
+      mensaje: error.message || "Error desconocido al intentar actualizar el veterinario."
+    };
   }
 }
 // </DOCUMENT>
