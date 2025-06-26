@@ -1,4 +1,3 @@
-// src/Dashboard.jsx
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -13,10 +12,9 @@ import {
 } from './services/data.js';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-
-// Importa los nuevos componentes
 import { ActualizarContrasena } from './ActualizarContrasena';
 import { GestionVeterinarios } from './GestionarVeterinarios';
+import { Mascotas } from './Mascotas'; // Import the Mascotas component
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -99,7 +97,11 @@ export function Dashboard({ usuario, onCerrarSesion }) {
   ];
 
   const manejarClickTarjeta = (funcionalidad) => {
-    alert(`Gestionar ${funcionalidad}. ¡Próximamente disponible!`);
+    if (funcionalidad === 'Mascotas') {
+      setVistaActual('mascotas');
+    } else {
+      alert(`Gestionar ${funcionalidad}. ¡Próximamente disponible!`);
+    }
   };
 
   const opcionesGrafico = {
@@ -131,31 +133,27 @@ export function Dashboard({ usuario, onCerrarSesion }) {
             </a>
           </li>
           <li className="nav-item"><a className="nav-link text-white" href="#dueños" onClick={() => manejarClickTarjeta('Dueños')}><i className="bi bi-people"></i> Dueños</a></li>
-          <li className="nav-item"><a className="nav-link text-white" href="#mascotas" onClick={() => manejarClickTarjeta('Mascotas')}><i className="bi bi-paw"></i> Mascotas</a></li>
+          <li className="nav-item"><a className="nav-link text-white" href="#mascotas" onClick={() => setVistaActual('mascotas')}><i className="bi bi-paw"></i> Mascotas</a></li>
           <li className="nav-item"><a className="nav-link text-white" href="#veterinarios" onClick={() => manejarClickTarjeta('Veterinarios')}><i className="bi bi-heart-pulse"></i> Veterinarios</a></li>
           <li className="nav-item"><a className="nav-link text-white" href="#citas" onClick={() => manejarClickTarjeta('Citas')}><i className="bi bi-calendar"></i> Citas</a></li>
           <li className="nav-item"><a className="nav-link text-white" href="#vacunas" onClick={() => manejarClickTarjeta('Vacunas')}><i className="bi bi-syringe"></i> Vacunas</a></li>
           <li className="nav-item"><a className="nav-link text-white" href="#consultas" onClick={() => manejarClickTarjeta('Consultas')}><i className="bi bi-file-medical"></i> Consultas</a></li>
           <li className="nav-item"><a className="nav-link text-white" href="#historial" onClick={() => manejarClickTarjeta('Historial')}><i className="bi bi-clock-history"></i> Historial</a></li>
-
           <li className="nav-item">
             <a className="nav-link text-white" href="#actualizar-pass" onClick={() => setVistaActual('actualizarContrasena')}>
               <i className="bi bi-key-fill"></i> Actualizar Contraseña
             </a>
           </li>
-
           <li className="nav-item">
             <a className="nav-link text-white" href="#gestion-veterinarios" onClick={() => setVistaActual('gestionVeterinarios')}>
               <i className="bi bi-person-badge-fill"></i> Gestionar Veterinarios
             </a>
           </li>
-
           <li className="nav-item mt-auto"><a className="nav-link text-white" href="#logout" onClick={onCerrarSesion}><i className="bi bi-box-arrow-left"></i> Cerrar Sesión</a></li>
         </ul>
       </nav>
       <main className="flex-grow-1 p-4" style={{ overflowY: 'auto', backgroundColor: '#f8f9fa' }}>
         <div className="container">
-          {/* Renderizado condicional del contenido principal */}
           {vistaActual === 'inicio' ? (
             <>
               <div className="row">
@@ -206,7 +204,11 @@ export function Dashboard({ usuario, onCerrarSesion }) {
             <GestionVeterinarios
               onVolverAlDashboard={() => setVistaActual('inicio')}
             />
-          ) : null} {/* . */}
+          ) : vistaActual === 'mascotas' ? (
+            <Mascotas
+              onVolverAlDashboard={() => setVistaActual('inicio')}
+            />
+          ) : null}
         </div>
       </main>
     </div>
