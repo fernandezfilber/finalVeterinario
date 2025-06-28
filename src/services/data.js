@@ -105,7 +105,7 @@ export async function actualizarDueno(id, dueno) {
     throw new Error(errorText || "Error al actualizar dueño");
   }
 
-  return true; // el backend solo devuelve 204 NoContent
+  return true;
 }
 
 // ❌ ELIMINAR DUEÑO
@@ -122,18 +122,97 @@ export async function buscarDuenoPorId(id) {
   return await res.json();
 }
 
-// 🐶 BUSCAR DUEÑOS POR NOMBRE DE MASCOTA (con conexión real al backend)
+// 🐶 BUSCAR DUEÑOS POR NOMBRE DE MASCOTA
 export async function buscarDuenoPorNombreMascota(nombreMascota) {
   const url = `${URL}dueños/por-nombre-mascota?nombreMascota=${encodeURIComponent(nombreMascota)}`;
-
   const res = await fetch(url);
-
   if (!res.ok) {
     const texto = await res.text();
     throw new Error(texto || "Error al buscar dueños por nombre de mascota");
   }
-
-  return await res.json(); // Devuelve un array de dueños
+  return await res.json();
 }
 
+// ❌ ELIMINAR VETERINARIO
+export async function eliminarVeterinario(idVeterinario) {
+  try {
+    const respuesta = await fetch(`${URL}Veterinario/${idVeterinario}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (respuesta.ok) {
+      const resultado = await respuesta.json();
+
+      if (resultado.exito) {
+        return {
+          exito: true,
+          mensaje: `Veterinario con ID ${idVeterinario} eliminado con éxito.`
+        };
+      } else {
+        return {
+          exito: false,
+          mensaje: `No se pudo eliminar el veterinario con ID ${idVeterinario}. Es posible que no exista.`
+        };
+      }
+
+    } else {
+      throw new Error(`Error al eliminar veterinario: ${respuesta.status} ${respuesta.statusText}`);
+    }
+
+  } catch (error) {
+    console.error('Error en eliminarVeterinario:', error.message);
+    return {
+      exito: false,
+      mensaje: error.message || "Error desconocido al eliminar el veterinario."
+    };
+  }
+}
+
+// 🔄 ACTUALIZAR VETERINARIO
+export async function actualizarVeterinario(idVeterinario, datosVeterinario) {
+  try {
+    const url = `${URL}Veterinario/${idVeterinario}`;
+    console.log(`[API] Intentando actualizar veterinario con PUT a: ${url}`);
+    console.log("[API] Datos a enviar:", datosVeterinario);
+
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(datosVeterinario)
+    });
+
+    if (!response.ok) {
+      let errorData = null;
+      try {
+        errorData = await response.json();
+      } catch (error) {
+        errorData = await response.text();
+      }
+
+      console.error(`[API] Error HTTP al actualizar veterinario: ${response.status} ${response.statusText}`, errorData);
+      throw new Error(errorData.mensaje || `Error al actualizar veterinario: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    console.log("[API] Respuesta de actualización exitosa:", result);
+
+    return {
+      exito: true,
+      mensaje: result.mensaje || "Veterinario actualizado correctamente."
+    };
+
+  } catch (error) {
+    console.error('[API] Error en actualizarVeterinario (catch block):', error.message);
+    return {
+      exito: false,
+      mensaje: error.message || "Error desconocido al intentar actualizar el veterinario."
+    };
+  }
+}
 
