@@ -1,0 +1,166 @@
+/* Registro.css - Ajustado para un tamaño más compacto y logo más pequeño */
+
+/* Estilos globales para el body para centrar el formulario y establecer el fondo */
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif; /* Usando Inter para una mejor estética */
+  background-color: #282c34; /* Color de fondo oscuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #f0f0f0; /* Color de texto claro */
+}
+
+/* Contenedor principal para el formulario de inicio de sesión/registro */
+.contenedor-login {
+  background-color: #3a3f47; /* Fondo más oscuro para el contenedor del formulario */
+  padding: 20px; /* Reducido para un contenedor más compacto */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 320px; /* Más estrecho para un look más compacto */
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Espacio entre secciones principales (imagen, título, formulario) */
+}
+
+/* Estilo para la imagen/logotipo */
+.contenedor-login img {
+  width: 100px;   /* Tamaño del logo reducido */
+  height: 100px;  /* Tamaño del logo reducido */
+  margin-bottom: 15px; /* Ajuste del margen inferior */
+  border-radius: 50%; /* Hace la imagen circular */
+  border: 2px solid #61dafb; /* Borde sutil como en la imagen */
+}
+
+/* Estilo para el título principal */
+.contenedor-login h1 {
+  color: #f0f0f0;
+  margin-bottom: 18px; /* Ajuste del margen inferior */
+  font-size: 1.5em; /* Ligeramente más pequeño para la coherencia */
+  font-weight: normal;
+  text-shadow: none;
+}
+
+/* Estilo del contenedor del formulario */
+.contenedor-login form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px; /* Espacio entre los elementos del formulario (pares de etiqueta+entrada) */
+}
+
+/* Estilo para las etiquetas */
+.contenedor-login label {
+  text-align: left;
+  margin-bottom: 2px; /* Acercar la etiqueta a la entrada */
+  font-weight: bold;
+  color: #c0c0c0;
+  font-size: 0.9em; /* Ligeramente más pequeño */
+}
+
+/* Estilo para todos los campos de entrada de texto/contraseña/teléfono/correo electrónico */
+.contenedor-login input[type="text"],
+.contenedor-login input[type="password"],
+.contenedor-login input[type="tel"],
+.contenedor-login input[type="email"] {
+  width: 100%;
+  padding: 9px; /* Menos padding en los inputs */
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #4c525a;
+  color: #f0f0f0;
+  font-size: 0.9em; /* Ligeramente más pequeño */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.contenedor-login input[type="text"]:focus,
+.contenedor-login input[type="password"]:focus,
+.contenedor-login input[type="tel"]:focus,
+.contenedor-login input[type="email"]:focus {
+  outline: none;
+  border-color: #61dafb;
+  box-shadow: 0 0 5px rgba(97, 218, 251, 0.5);
+  background-color: #5a6069;
+}
+
+/* Estilo específico para la etiqueta y la entrada de la casilla de verificación */
+.contenedor-login .checkbox-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px; /* Menos espacio entre checkbox y texto */
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.contenedor-login input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: #61dafb;
+  width: 14px; /* Ajuste de tamaño */
+  height: 14px; /* Ajuste de tamaño */
+}
+
+/* Estilo del botón de enviar */
+.contenedor-login input[type="submit"] {
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 10px 15px; /* Menos padding en el botón */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95em; /* Ligeramente más pequeño */
+  font-weight: bold;
+  letter-spacing: normal;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  margin-top: 15px; /* Ajuste del margen superior */
+}
+
+.contenedor-login input[type="submit"]:hover {
+  background-color: #4fa3d1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.contenedor-login input[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la sección "¿Ya tienes cuenta? Inicia Sesión" */
+.login-prompt {
+    margin-top: 15px; /* Ajuste del margen superior */
+    padding-top: 10px; /* Menos padding superior */
+    border-top: 1px solid #555;
+    width: 100%;
+    text-align: center;
+    color: #c0c0c0;
+    font-size: 0.8em; /* Ligeramente más pequeño */
+}
+
+.login-prompt span {
+    margin-right: 5px;
+}
+
+/* Estilo para el botón "Inicia Sesión" */
+.login-prompt .login-button {
+    background: none;
+    border: none;
+    color: #61dafb;
+    cursor: pointer;
+    font-size: 0.9em; /* Ligeramente más pequeño */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0;
+    transition: text-decoration 0.3s ease;
+}
+
+.login-prompt .login-button:hover {
+    text-decoration: underline;
+}

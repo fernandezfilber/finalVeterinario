@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import * as API from './services/data'; 
-import './App.css'; 
+import * as API from '../services/data';
+import imagen from "../assets/login.png";
+import './Registro.css';
+import { useNavigate } from 'react-router-dom';
 
 export function Registro() {
+  const navigate = useNavigate();
+
   const [datosRegistro, setDatosRegistro] = useState({
     usuario: '',
     contrasena: '',
     nombre: '',
     telefono: '',
     correo: '',
-    activo: true 
+    activo: true
   });
 
   const manejarCambio = (e) => {
@@ -22,43 +26,44 @@ export function Registro() {
 
   const manejarEnvioRegistro = async (e) => {
     e.preventDefault();
-    console.log("Enviando datos de registro:", datosRegistro);
+    try {
+      const resultado = await API.registrarVeterinario(datosRegistro);
 
-    const resultado = await API.registrarVeterinario(datosRegistro);
-
-    if (resultado && !resultado.error) {
-      alert("¡Veterinario registrado con éxito! Mensaje: " + resultado.mensaje);
-      // Opcional: limpiar el formulario o redirigir al login
-      setDatosRegistro({
-        usuario: '',
-        contrasena: '',
-        nombre: '',
-        telefono: '',
-        correo: '',
-        activo: true
-      });
-    } else {
-      alert("Error al registrar veterinario: " + (resultado.error || "Error desconocido."));
+      if (resultado && !resultado.error) {
+        alert("¡Veterinario registrado con éxito!");
+        setDatosRegistro({
+          usuario: '',
+          contrasena: '',
+          nombre: '',
+          telefono: '',
+          correo: '',
+          activo: true
+        });
+      } else {
+        alert("Error al registrar veterinario.");
+      }
+    } catch (error) {
+      alert("Error de red o del servidor: " + error.message);
     }
   };
-//esto es html , para formularios=>
+
   return (
-    <div className="contenedor-login"> {/* Reutilizamos la clase de estilo */}
-      <img src={API.imagen} width="120" height="120" alt="Imagen de Registro" /> {/* */}
+    <div className="contenedor-login">
+      <img src={imagen} alt="Logo Veterinaria" className="login-logo" />
       <h1>Registro de Veterinario</h1>
       <form onSubmit={manejarEnvioRegistro}>
         <label htmlFor="regUsuario">Usuario:</label>
-        <input 
+        <input
           id="regUsuario"
           type="text"
-          name="usuario" 
+          name="usuario"
           value={datosRegistro.usuario}
           onChange={manejarCambio}
           required
         />
 
         <label htmlFor="regContrasena">Contraseña:</label>
-        <input 
+        <input
           id="regContrasena"
           type="password"
           name="contrasena"
@@ -68,7 +73,7 @@ export function Registro() {
         />
 
         <label htmlFor="regNombre">Nombre Completo:</label>
-        <input 
+        <input
           id="regNombre"
           type="text"
           name="nombre"
@@ -78,9 +83,9 @@ export function Registro() {
         />
 
         <label htmlFor="regTelefono">Teléfono:</label>
-        <input 
+        <input
           id="regTelefono"
-          type="tel" // Tipo 'tel' para teléfonos
+          type="tel"
           name="telefono"
           value={datosRegistro.telefono}
           onChange={manejarCambio}
@@ -88,21 +93,21 @@ export function Registro() {
         />
 
         <label htmlFor="regCorreo">Correo Electrónico:</label>
-        <input 
+        <input
           id="regCorreo"
-          type="email" // Tipo 'email' para correos
+          type="email"
           name="correo"
           value={datosRegistro.correo}
           onChange={manejarCambio}
           required
         />
 
-        <label htmlFor="regActivo">
-          <input 
+        <label htmlFor="regActivo" className="checkbox-label">
+          <input
             id="regActivo"
             type="checkbox"
             name="activo"
-            checked={datosRegistro.activo} // 'checked' para checkboxes
+            checked={datosRegistro.activo}
             onChange={manejarCambio}
           />
           Activo
@@ -110,6 +115,13 @@ export function Registro() {
 
         <input type="submit" value="Registrar" />
       </form>
+
+      <div className="login-prompt">
+        <span>¿Ya tienes cuenta?</span>
+        <button type="button" className="login-button" onClick={() => navigate('/login')}>
+          Inicia Sesión
+        </button>
+      </div>
     </div>
   );
 }
